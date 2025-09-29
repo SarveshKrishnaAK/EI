@@ -53,7 +53,7 @@ submit_assignment S001 Math101 Assignment1:Read Chapter 1
 - **Extensible** for future features (e.g., persistence, reporting)
 
 ## 👤 Author & Contact
-- Sarvesh Krishna A K
+- [Sarvesh Krishna A K](mailto:sarveshkrishnaak@gmail.com)
 - [GitHub: SarveshKrishnaAK](https://github.com/SarveshKrishnaAK)
 
 ---
