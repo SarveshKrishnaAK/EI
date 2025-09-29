@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Virtual Classroom Manager
 
 A terminal-based Java application for managing virtual classrooms, students, and assignments. Built with SOLID principles, robust logging, exception handling, and a modular structure.
@@ -30,3 +31,7 @@ A terminal-based Java application for managing virtual classrooms, students, and
 ---
 
 *Replace this README with your own notes as you develop the project.*
+=======
+# EI
+Placement Drive
+>>>>>>> 4aa4989fb00b2285ffe96c550763ab262156cfed
