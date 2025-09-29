@@ -1,37 +1,63 @@
-<<<<<<< HEAD
-# Virtual Classroom Manager
+# Virtual Classroom Manager (EI)
 
-A terminal-based Java application for managing virtual classrooms, students, and assignments. Built with SOLID principles, robust logging, exception handling, and a modular structure.
+A robust, terminal-based Java application for managing virtual classrooms, student attendance, and assignment workflows. Designed for real-world EdTech scenarios, this project demonstrates best practices in software engineering, modularity, and defensive programming.
 
-## Features
-- Add, list, and remove classrooms
-- Enroll and list students
-- Schedule and submit assignments
-- Gold-standard logging and error handling
+## 🚀 Key Features
+- **Classroom Management:** Add, list, and remove virtual classrooms
+- **Student Management:** Enroll students (individually or in all classrooms), list students per classroom
+- **Session Scheduling:** Schedule classes with time slots (from HH:mm to HH:mm)
+- **Attendance Tracking:**
+  - Students join/leave classes; attendance is monitored with join/leave times
+  - Default leave time is set to class end if not explicitly left
+  - Attendance can be finalized manually
+- **Assignment Management:** Schedule assignments for classrooms, submit assignments per student
+- **Comprehensive Logging:** All actions are logged for traceability
+- **Exception & Transient Error Handling:** Defensive programming throughout
 
-## How to Run
-1. Ensure you have Java 17+ installed.
-2. Compile the project:
+## 🛠️ How to Run
+1. **Prerequisite:** Java 17 or higher
+2. **Compile:**
    ```sh
-   javac -d out src/*.java
+   javac -d out src/classroom/*.java src/student/*.java src/assignment/*.java src/util/*.java src/*.java
    ```
-3. Run the application:
+3. **Run:**
    ```sh
    java -cp out src.Main
    ```
 
-## Project Structure
-- Each class is in its own file under `src/`
-- Logging and error handling are implemented throughout
+## 📝 Example Workflow
+```
+add_classroom Math101
+add_student S001 Math101
+schedule_class Math101 from09:00-to10:00
+join_class S001 Math101
+leave_class S001 Math101
+list_attendance Math101
+schedule_assignment Math101 Assignment1:Read Chapter 1
+submit_assignment S001 Math101 Assignment1:Read Chapter 1
+```
 
-## Coding Standards
-- Follows global best practices and naming conventions
-- Designed for extensibility and maintainability
+## 🏗️ Project Structure
+- `src/classroom/` — Classroom and session management
+- `src/student/` — Student, attendance, and attendance record management
+- `src/assignment/` — Assignment and submission management
+- `src/util/` — Logging, retry, and exception utilities
+- `src/Main.java` — Application entry point
+- `src/VirtualClassroomApp.java` — Main application logic and command handling
+
+## 💡 Design & Best Practices
+- **SOLID Principles** and modular design
+- **Manager pattern** for domain logic
+- **Factory pattern** for logging
+- **Defensive programming** and input validation
+- **Extensible** for future features (e.g., persistence, reporting)
+
+## 👤 Author & Contact
+- Sarvesh Krishna A K
+- [GitHub: SarveshKrishnaAK](https://github.com/SarveshKrishnaAK)
 
 ---
 
-*Replace this README with your own notes as you develop the project.*
-=======
+*This project is part of a placement drive and demonstrates real-world backend design for EdTech platforms.*
 # EI
 Placement Drive
->>>>>>> 4aa4989fb00b2285ffe96c550763ab262156cfed
