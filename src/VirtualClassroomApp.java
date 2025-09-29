@@ -1,6 +1,12 @@
 package src;
 
+import java.util.List;
+
 import src.classroom.ClassroomManager;
+import src.classroom.ScheduledClassManager;
+import src.classroom.ScheduledClass;
+import src.student.AttendanceManager;
+import src.student.AttendanceRecord;
 import src.student.StudentManager;
 import src.assignment.AssignmentManager;
 import src.util.LoggerFactory;
@@ -12,6 +18,8 @@ public class VirtualClassroomApp {
     private final ClassroomManager classroomManager = new ClassroomManager();
     private final StudentManager studentManager = new StudentManager();
     private final AssignmentManager assignmentManager = new AssignmentManager();
+    private final ScheduledClassManager scheduledClassManager = new ScheduledClassManager();
+    private final AttendanceManager attendanceManager = new AttendanceManager();
     private final Logger logger = LoggerFactory.getLogger();
 
     public void run() {
@@ -33,6 +41,62 @@ public class VirtualClassroomApp {
             String command = parts[0];
             String args = parts.length > 1 ? parts[1] : "";
             switch (command) {
+                case "schedule_class": {
+                    String[] scArgs = args.split(" ", 2);
+                    if (scArgs.length < 2) { System.out.println("Usage: schedule_class <ClassName> <fromHH:mm-toHH:mm>"); break; }
+                    String classroomName = scArgs[0];
+                    String[] times = scArgs[1].split("-to");
+                    if (times.length != 2) { System.out.println("Time format error. Use fromHH:mm-toHH:mm"); break; }
+                    try {
+                        java.time.LocalTime start = java.time.LocalTime.parse(times[0].replace("from", "").trim());
+                        java.time.LocalTime end = java.time.LocalTime.parse(times[1].trim());
+                        scheduledClassManager.scheduleClass(classroomName, start, end);
+                        System.out.println("Class scheduled for " + classroomName + " from " + start + " to " + end);
+                        logger.info("Class scheduled: " + classroomName + " from " + start + " to " + end);
+                    } catch (Exception e) {
+                        System.out.println("Invalid time format. Use HH:mm");
+                    }
+                    break;
+                }
+                case "join_class": {
+                    String[] jcArgs = args.split(" ", 2);
+                    if (jcArgs.length < 2) { System.out.println("Usage: join_class <StudentID> <ClassName>"); break; }
+                    String studentId = jcArgs[0];
+                    String classroomName = jcArgs[1];
+                    java.time.LocalTime now = java.time.LocalTime.now();
+                    java.util.List<src.classroom.ScheduledClass> schedules = scheduledClassManager.getSchedules(classroomName);
+                    if (schedules.isEmpty()) {
+                        System.out.println("No scheduled class found for " + classroomName);
+                        break;
+                    }
+                    java.time.LocalTime endTime = schedules.get(schedules.size() - 1).getEndTime();
+                    attendanceManager.studentJoin(classroomName, studentId, now, endTime);
+                    System.out.println("Student " + studentId + " joined class " + classroomName + " at " + now + " (default leave: " + endTime + ")");
+                    logger.info("Student joined: " + studentId + " in " + classroomName + " at " + now);
+                    break;
+                }
+                case "leave_class": {
+                    String[] lcArgs = args.split(" ", 2);
+                    if (lcArgs.length < 2) { System.out.println("Usage: leave_class <StudentID> <ClassName>"); break; }
+                    String studentId = lcArgs[0];
+                    String classroomName = lcArgs[1];
+                    java.time.LocalTime now = java.time.LocalTime.now();
+                    attendanceManager.studentLeave(classroomName, studentId, now);
+                    System.out.println("Student " + studentId + " left class " + classroomName + " at " + now);
+                    logger.info("Student left: " + studentId + " in " + classroomName + " at " + now);
+                    break;
+                }
+                case "list_attendance": {
+                    String classroomName = args.trim();
+                    if (classroomName.isEmpty()) { System.out.println("Usage: list_attendance <ClassName>"); break; }
+                    java.util.Map<String, AttendanceRecord> att = attendanceManager.getClassAttendance(classroomName);
+                    if (att.isEmpty()) {
+                        System.out.println("No attendance records for " + classroomName);
+                    } else {
+                        att.forEach((sid, rec) -> System.out.println("Student: " + sid + ", Joined: " + rec.getJoinTime() + ", Left: " + (rec.getLeaveTime() != null ? rec.getLeaveTime() : "-") ));
+                    }
+                    break;
+                }
                 case "add_classroom":
                     if (classroomManager.addClassroom(args)) {
                         System.out.println("Classroom " + args + " has been created.");
@@ -43,10 +107,35 @@ public class VirtualClassroomApp {
                     break;
                 case "add_student": {
                     String[] sArgs = args.split(" ", 2);
-                    if (sArgs.length < 2) { System.out.println("Usage: add_student <ID> <ClassName>"); break; }
-                    if (studentManager.enrollStudent(sArgs[0], sArgs[1])) {
-                        System.out.println("Student " + sArgs[0] + " has been enrolled in " + sArgs[1] + ".");
-                        logger.info("Student enrolled: " + sArgs[0] + " in " + sArgs[1]);
+                    if (sArgs.length < 2) { System.out.println("Usage: add_student <ID> <ClassName|all>"); break; }
+                    String studentId = sArgs[0];
+                    String className = sArgs[1];
+                    if (className.equalsIgnoreCase("all")) {
+                        List<src.classroom.Classroom> allClassrooms = classroomManager.listClassrooms();
+                        if (allClassrooms.isEmpty()) {
+                            System.out.println("No classrooms available.");
+                            break;
+                        }
+                        boolean anyEnrolled = false;
+                        for (src.classroom.Classroom c : allClassrooms) {
+                            if (studentManager.enrollStudent(studentId, c.getName())) {
+                                System.out.println("Student " + studentId + " has been enrolled in " + c.getName() + ".");
+                                logger.info("Student enrolled: " + studentId + " in " + c.getName());
+                                anyEnrolled = true;
+                            }
+                        }
+                        if (!anyEnrolled) {
+                            System.out.println("Student already enrolled in all classrooms.");
+                        }
+                        break;
+                    }
+                    if (classroomManager.getClassroom(className) == null) {
+                        System.out.println("Classroom does not exist.");
+                        break;
+                    }
+                    if (studentManager.enrollStudent(studentId, className)) {
+                        System.out.println("Student " + studentId + " has been enrolled in " + className + ".");
+                        logger.info("Student enrolled: " + studentId + " in " + className);
                     } else {
                         System.out.println("Student already enrolled.");
                     }
@@ -76,6 +165,10 @@ public class VirtualClassroomApp {
                     classroomManager.listClassrooms().forEach(c -> System.out.println(c.getName()));
                     break;
                 case "list_students":
+                    if (classroomManager.getClassroom(args) == null) {
+                        System.out.println("Classroom does not exist.");
+                        break;
+                    }
                     studentManager.listStudents(args).forEach(s -> System.out.println(s.getId()));
                     break;
                 case "list_assignments":
