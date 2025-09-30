@@ -1,10 +1,8 @@
-*This project is part of a placement drive and demonstrates real-world backend design for EdTech platforms.*
-# EI
-Placement Drive
+*This is a part of a placement drive that demonstrates real-world backend design for EdTech platforms.*
 
 ---
 
-# Virtual Classroom Manager (EI)
+# Virtual Classroom Manager
 
 A robust, terminal-based Java application for managing virtual classrooms, student attendance, and assignment workflows. Designed for real-world EdTech scenarios, this project demonstrates best practices in software engineering, modularity, and defensive programming.
 
@@ -34,13 +32,42 @@ A robust, terminal-based Java application for managing virtual classrooms, stude
 ## 📝 Example Workflow
 ```
 add_classroom Math101
+add_classroom Physics101
+list_classrooms
+
 add_student S001 Math101
+add_student S002 all
+list_students Math101
+list_students Physics101
+
 schedule_class Math101 from09:00-to10:00
-join_class S001 Math101
-leave_class S001 Math101
-list_attendance Math101
+schedule_class Physics101 from10:30-to11:30
+
 schedule_assignment Math101 Assignment1:Read Chapter 1
+schedule_assignment Physics101 Assignment2:Lab Report
+list_assignments Math101
+list_assignments Physics101
+
+join_class S001 Math101
+join_class S002 Math101
+join_class S002 Physics101
+
+leave_class S001 Math101
+
+list_attendance Math101
+list_attendance Physics101
+
 submit_assignment S001 Math101 Assignment1:Read Chapter 1
+submit_assignment S002 Math101 Assignment1:Read Chapter 1
+submit_assignment S002 Physics101 Assignment2:Lab Report
+
+remove_classroom Physics101
+list_classrooms
+
+finalize_attendance Math101
+list_attendance Math101
+
+exit
 ```
 
 ## 🏗️ Project Structure
@@ -59,7 +86,7 @@ submit_assignment S001 Math101 Assignment1:Read Chapter 1
 - **Extensible** for future features (e.g., persistence, reporting)
 
 ## 👤 Author & Contact
-- [Sarvesh Krishna A K](mailto:sarveshkrishnaak@gmail.com)
-- [GitHub: SarveshKrishnaAK](https://github.com/SarveshKrishnaAK)
+- [Mail: Sarvesh Krishna A K](mailto:sarveshkrishnaak@gmail.com)
+- [LinkedIn: SarveshKrishnaAK](https://www.linkedin.com/in/sarveshkrishnaak)
 
 
