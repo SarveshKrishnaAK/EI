@@ -1,4 +1,4 @@
-*This is a part of a placement drive that demonstrates real-world backend design for EdTech platforms.*
+*This is a part of a placement drive that demonstrates my understanding of real-world use cases involving six design patterns.*
 
 ---
 
