@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run VirtualClassroomApp",
+			"type": "shell",
+			"command": "java -cp out src.Main",
+			"args": [],
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
