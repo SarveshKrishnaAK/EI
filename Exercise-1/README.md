@@ -2,7 +2,7 @@
 
 ---
 
-# Exercise 1: Software Design Patterns Showcase
+# Exercise 1: Software  Patterns Showcase
 
 ## Overview
 This project demonstrates six fundamental software design patterns in Java, each implemented with a simple, real-world use case. The patterns are organized for clarity and easy reference, making it ideal for interviews, learning, and practical demonstration.
