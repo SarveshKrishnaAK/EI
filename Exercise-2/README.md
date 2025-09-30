@@ -2,11 +2,12 @@
 
 ---
 
-# Virtual Classroom Manager
+# Exercise 2: Virtual Classroom Manager
 
+## Overview
 A robust, terminal-based Java application for managing virtual classrooms, student attendance, and assignment workflows. Designed for real-world EdTech scenarios, this project demonstrates best practices in software engineering, modularity, and defensive programming.
 
-## 🚀 Key Features
+## Key Features
 - **Classroom Management:** Add, list, and remove virtual classrooms
 - **Student Management:** Enroll students (individually or in all classrooms), list students per classroom
 - **Session Scheduling:** Schedule classes with time slots (from HH:mm to HH:mm)
@@ -18,7 +19,7 @@ A robust, terminal-based Java application for managing virtual classrooms, stude
 - **Comprehensive Logging:** All actions are logged for traceability
 - **Exception & Transient Error Handling:** Defensive programming throughout
 
-## 🛠️ How to Run
+## How to Run
 1. **Prerequisite:** Java 17 or higher
 2. **Compile:**
    ```sh
@@ -29,7 +30,7 @@ A robust, terminal-based Java application for managing virtual classrooms, stude
    java -cp out src.Main
    ```
 
-## 📝 Example Workflow
+## Example Workflow
 ```
 add_classroom Math101
 add_classroom Physics101
@@ -70,7 +71,7 @@ list_attendance Math101
 exit
 ```
 
-## 🏗️ Project Structure
+## Project Structure
 - `src/classroom/` — Classroom and session management
 - `src/student/` — Student, attendance, and attendance record management
 - `src/assignment/` — Assignment and submission management
@@ -78,15 +79,18 @@ exit
 - `src/Main.java` — Application entry point
 - `src/VirtualClassroomApp.java` — Main application logic and command handling
 
-## 💡 Design & Best Practices
+## Design and Best Practices
 - **SOLID Principles** and modular design
 - **Manager pattern** for domain logic
 - **Factory pattern** for logging
 - **Defensive programming** and input validation
 - **Extensible** for future features (e.g., persistence, reporting)
 
-## 👤 Author & Contact
-- [Mail: Sarvesh Krishna A K](mailto:sarveshkrishnaak@gmail.com)
-- [LinkedIn: SarveshKrishnaAK](https://www.linkedin.com/in/sarveshkrishnaak)
+## Author and Contact
+- **Author:** Sarvesh Krishna A K
+- **Email:** sarveshkrishnaak@gmail.com
+- **LinkedIn:** [sarveshkrishnaak](https://www.linkedin.com/in/sarveshkrishnaak)
 
+---
+For any queries or feedback, feel free to reach out via email or LinkedIn.
 

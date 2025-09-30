@@ -50,9 +50,11 @@ Develop the backend for a terminal-based Virtual Classroom Manager that handles:
 
 ---
 
-## Contact
+## Author and Contact
 
+- **Author:** Sarvesh Krishna A K
 - **Email:** sarveshkrishnaak@gmail.com
-- **LinkedIn:** [www.linkedin.com/in/sarveshkrishnaak](https://www.linkedin.com/in/sarveshkrishnaak)
+- **LinkedIn:** [sarveshkrishnaak](https://www.linkedin.com/in/sarveshkrishnaak)
 
-Feel free to reach out for any queries or further discussion!
+---
+For any queries or feedback, feel free to reach out via email or LinkedIn.
