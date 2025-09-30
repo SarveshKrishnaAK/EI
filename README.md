@@ -13,7 +13,7 @@ Welcome to my Placement Drive repository! This repository contains two coding ex
 ## Overview
 This repository is organized into two main folders:
 - `Exercise-1`: Demonstrates six different software design patterns through creative use cases.
-- `Exercise-2`: Implements a console-based Virtual Classroom Manager for an EdTech platform.
+- `Exercise-2`: Implements a terminal-based Virtual Classroom Manager for an EdTech platform.
 
 All code is written in Java, following global best practices and standards for readability, maintainability, and performance.
 
@@ -36,7 +36,7 @@ Demonstrate understanding of software design patterns by implementing six creati
 ## Exercise 2: Virtual Classroom Manager
 
 **Objective:**
-Develop the backend for a console-based Virtual Classroom Manager that handles:
+Develop the backend for a terminal-based Virtual Classroom Manager that handles:
 - Class scheduling
 - Student attendance
 - Assignment submissions
