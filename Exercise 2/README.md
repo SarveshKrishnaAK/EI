@@ -1,3 +1,9 @@
+*This project is part of a placement drive and demonstrates real-world backend design for EdTech platforms.*
+# EI
+Placement Drive
+
+---
+
 # Virtual Classroom Manager (EI)
 
 A robust, terminal-based Java application for managing virtual classrooms, student attendance, and assignment workflows. Designed for real-world EdTech scenarios, this project demonstrates best practices in software engineering, modularity, and defensive programming.
@@ -56,8 +62,4 @@ submit_assignment S001 Math101 Assignment1:Read Chapter 1
 - [Sarvesh Krishna A K](mailto:sarveshkrishnaak@gmail.com)
 - [GitHub: SarveshKrishnaAK](https://github.com/SarveshKrishnaAK)
 
----
 
-*This project is part of a placement drive and demonstrates real-world backend design for EdTech platforms.*
-# EI
-Placement Drive
